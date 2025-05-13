@@ -7,6 +7,7 @@ export interface BlogPost {
   featured_image?: string | null;
   author?: string | null;
   published_at?: string | null;
+  created_at?: string | null;
   updated_at: string;
   tags?: string | null;
   is_published: boolean;

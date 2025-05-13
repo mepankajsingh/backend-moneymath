@@ -8,12 +8,16 @@ import type { BlogPost } from '../lib/database.types';
 
 type FormData = Omit<BlogPost, 'id'> & {
   selectedTags: number[];
+  published_at?: string;
 };
 
 const CreatePost = () => {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [previewMode, setPreviewMode] = useState(false);
+  
+  // Get today's date in YYYY-MM-DD format for the default value
+  const today = new Date().toISOString().split('T')[0];
   
   const form = useForm<FormData>({
     defaultValues: {
@@ -27,6 +31,7 @@ const CreatePost = () => {
       selectedTags: [],
       is_published: false,
       is_featured: false,
+      published_at: today,
       updated_at: new Date().toISOString()
     }
   });
@@ -70,7 +75,7 @@ const CreatePost = () => {
         content: data.content,
         featured_image: data.featured_image || null,
         author: data.author || null,
-        published_at: data.is_published ? new Date().toISOString() : null,
+        published_at: data.published_at ? new Date(data.published_at).toISOString() : null,
         updated_at: new Date().toISOString(),
         tags: tagsString || data.tags || null,
         is_published: data.is_published || false,

@@ -8,6 +8,7 @@ import type { BlogPost } from '../lib/database.types';
 
 type FormData = Omit<BlogPost, 'id'> & {
   tags: string;
+  published_at?: string;
 };
 
 const EditPost = () => {
@@ -29,6 +30,7 @@ const EditPost = () => {
       tags: '',
       is_published: false,
       is_featured: false,
+      published_at: new Date().toISOString().split('T')[0],
     }
   });
 
@@ -68,9 +70,18 @@ const EditPost = () => {
             }
           }
           
+          // Format published_at date for the date input (YYYY-MM-DD)
+          let formattedPublishedAt = '';
+          if (data.published_at) {
+            formattedPublishedAt = new Date(data.published_at).toISOString().split('T')[0];
+          } else {
+            formattedPublishedAt = new Date().toISOString().split('T')[0];
+          }
+          
           reset({
             ...data,
             tags: tagsString,
+            published_at: formattedPublishedAt,
           });
         } else {
           throw new Error('Post not found');
@@ -110,6 +121,11 @@ const EditPost = () => {
         tagsList = data.tags.filter(Boolean);
       }
       
+      // Format the published_at date properly
+      const publishedAt = data.published_at 
+        ? new Date(data.published_at).toISOString()
+        : form.getValues('published_at') || null;
+      
       // Prepare post data
       const postData = {
         title: data.title,
@@ -121,9 +137,7 @@ const EditPost = () => {
         tags: tagsList,
         is_published: data.is_published,
         is_featured: data.is_featured,
-        published_at: data.is_published && !form.getValues('published_at') 
-          ? new Date().toISOString() 
-          : form.getValues('published_at'),
+        published_at: publishedAt,
         updated_at: new Date().toISOString(),
       };
 
