@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for the rich text editor */
+.ProseMirror p {
+  @apply text-sm leading-relaxed my-2;
+}
+
+.ProseMirror {
+  @apply text-sm;
+}
+
+.ProseMirror code {
+  @apply text-xs bg-gray-100 px-1 py-0.5 rounded;
+}
+
+.ProseMirror pre {
+  @apply text-xs bg-gray-100 p-3 rounded my-3;
+}

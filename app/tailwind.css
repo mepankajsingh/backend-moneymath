@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  @apply bg-gray-50 text-gray-900;
+}
+
+/* Utility classes for compact UI */
+.compact-form {
+  @apply space-y-3;
+}
+
+.compact-input {
+  @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-1.5 text-sm border;
+}
+
+.compact-button {
+  @apply px-3 py-1.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:ring-offset-1 disabled:opacity-50;
+}
+
+.compact-card {
+  @apply bg-white p-3 rounded-md shadow-sm border border-gray-200;
+}
+
+.compact-table {
+  @apply min-w-full divide-y divide-gray-200 text-sm;
+}
+
+.compact-table th {
+  @apply px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+}
+
+.compact-table td {
+  @apply px-3 py-2 whitespace-nowrap;
+}
