@@ -80,8 +80,8 @@ const RichTextEditor = ({ content, onChange, placeholder = 'Write something...' 
   }
 
   return (
-    <div className="rich-text-editor border border-gray-300 rounded-md">
-      <div className="border-b border-gray-300 bg-gray-50 p-2 flex flex-wrap gap-1">
+    <div className="rich-text-editor border border-gray-300 rounded-md relative">
+      <div className="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 p-2 flex flex-wrap gap-1">
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleBold().run()}
